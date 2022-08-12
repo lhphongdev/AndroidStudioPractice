@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Array;
+import java.util.HashMap;
+
 public class RegisterActivity extends AppCompatActivity {
 
     @Override
@@ -33,15 +36,14 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!username.getText().toString().equals("") && !email.getText().toString().equals("") && !password.getText().toString().equals("") && !confirmPassword.getText().toString().equals("")) {
-                    if(!password.getText().toString().equals(confirmPassword.getText().toString())){
+                    if (!password.getText().toString().equals(confirmPassword.getText().toString())) {
                         Toast.makeText(RegisterActivity.this, "Password and confirm password do not match!", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
+                    } else {
                         Toast.makeText(RegisterActivity.this, "Register Successfully", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                     }
 
-                }else{
+                } else {
                     Toast.makeText(RegisterActivity.this, "Enter all fields!", Toast.LENGTH_SHORT).show();
                 }
             }
