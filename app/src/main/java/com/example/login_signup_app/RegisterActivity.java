@@ -44,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
 
                 } else {
-                    Toast.makeText(RegisterActivity.this, "Enter all fields!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Enter all fields!!!!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
