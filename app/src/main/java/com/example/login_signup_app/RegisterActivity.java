@@ -10,43 +10,52 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
-import java.util.HashMap;
-
 public class RegisterActivity extends AppCompatActivity {
+
+    TextView btn;
+
+    private EditText inputUsername, inputPassword, inputConfirmPassword, inputEmail;
+    Button btnRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        TextView btn = findViewById(R.id.textViewSigIn);
+        btn = findViewById(R.id.textViewSigIn);
         btn.setOnClickListener(view -> startActivity(new Intent(RegisterActivity.this, LoginActivity.class)));
 
-        TextView username = findViewById(R.id.inputUsernameRegister);
-        TextView email = findViewById(R.id.inputEmail);
-        TextView password = findViewById(R.id.inputPasswordRegister);
-        TextView confirmPassword = findViewById(R.id.inputConfirmPassword);
+        inputUsername = findViewById(R.id.inputUsernameRegister);
+        inputEmail = findViewById(R.id.inputEmail);
+        inputPassword = findViewById(R.id.inputPasswordRegister);
+        inputConfirmPassword = findViewById(R.id.inputConfirmPassword);
 
-        Button btnRegister = findViewById(R.id.btnRegister);
+        btnRegister = findViewById(R.id.btnRegister);
+        btnRegister.setOnClickListener(view -> checkCredentials());
+    }
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!username.getText().toString().equals("") && !email.getText().toString().equals("") && !password.getText().toString().equals("") && !confirmPassword.getText().toString().equals("")) {
-                    if (!password.getText().toString().equals(confirmPassword.getText().toString())) {
-                        Toast.makeText(RegisterActivity.this, "Password and confirm password do not match!", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(RegisterActivity.this, "Register Successfully", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                    }
+    private void checkCredentials() {
+        String username = inputUsername.getText().toString();
+        String email = inputEmail.getText().toString();
+        String password = inputPassword.getText().toString();
+        String confirmPassword = inputConfirmPassword.getText().toString();
 
-                } else {
-                    Toast.makeText(RegisterActivity.this, "Enter all fields!!!!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        if (username.isEmpty() || username.length() < 7) {
+            showError(inputUsername, "Username is not valid");
+        } else if (!email.contains("@")) {
+            showError(inputEmail, "Email is not valid");
+        } else if (password.isEmpty() || password.length() < 6) {
+            showError(inputPassword, "Password must be at least 6 characters");
+        } else if (confirmPassword.isEmpty() || !confirmPassword.equals(password)) {
+            showError(inputConfirmPassword, "Password and confirm password do not match");
+        } else {
+            Toast.makeText(RegisterActivity.this, "Register Successfully", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+        }
+    }
+
+    private void showError(EditText input, String s) {
+        input.setError(s);
+        input.requestFocus();
     }
 }
