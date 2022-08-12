@@ -45,6 +45,6 @@ public class LoginActivity extends AppCompatActivity {
 
         TextView forgotPassword = findViewById(R.id.forgotPassword);
 
-        forgotPassword.setOnClickListener(view -> Toast.makeText(LoginActivity.this, "Relax & try to remember your password, please!", Toast.LENGTH_SHORT).show());
+        forgotPassword.setOnClickListener(view -> Toast.makeText(LoginActivity.this, "Relax & try to remember your password, please!!", Toast.LENGTH_SHORT).show());
     }
 }
