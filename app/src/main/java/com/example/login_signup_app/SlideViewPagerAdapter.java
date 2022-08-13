@@ -109,8 +109,6 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 next.setVisibility(View.VISIBLE);
                 btnGetStarted.setVisibility(View.GONE);
                 skip.setVisibility(View.VISIBLE);
-
-
                 break;
             case 2:
                 logo.setImageResource(R.drawable.shipper);
@@ -123,11 +121,7 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 next.setVisibility(View.GONE);
                 btnGetStarted.setVisibility(View.VISIBLE);
                 skip.setVisibility(View.GONE);
-
-
                 break;
-
-
         }
 
         container.addView(view);
