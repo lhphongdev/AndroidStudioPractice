@@ -3,11 +3,13 @@ package com.example.login_signup_app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +17,7 @@ public class LoginActivity extends AppCompatActivity {
 
     Button btnLogin;
     private EditText inputUsername, inputPassword;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,8 @@ public class LoginActivity extends AppCompatActivity {
         TextView forgotPassword = findViewById(R.id.forgotPassword);
 
         forgotPassword.setOnClickListener(view -> Toast.makeText(LoginActivity.this, "Relax & try to remember your password, please!!", Toast.LENGTH_SHORT).show());
+
+
     }
 
     private void checkCredentials() {
@@ -53,11 +58,10 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             if (username.equals("admin") && password.equals("admin")) {
                 Toast.makeText(LoginActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this,MainActivity.class));
+                startActivity(new Intent(this, MainActivity.class));
             } else {
                 Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
             }
-
         }
     }
 

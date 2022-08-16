@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +20,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText inputUsername, inputPassword, inputConfirmPassword, inputEmail;
     Button btnRegister;
+    CheckBox showPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,23 @@ public class RegisterActivity extends AppCompatActivity {
 
         btnRegister = findViewById(R.id.btnRegister);
         btnRegister.setOnClickListener(view -> checkCredentials());
+
+        showPass = findViewById(R.id.showPass);
+
+        showPass.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean check) {
+                if (check) {
+                    inputPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    inputConfirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                } else {
+                    inputPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    inputConfirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
+
+
     }
 
     private void checkCredentials() {
